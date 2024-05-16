@@ -1,11 +1,13 @@
+import { IProduct } from './intefaces/iproduct';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, ProductDetailComponent],
   templateUrl: './app.component.html',
   // template: `<h1>Hello world!</h1>`,
   styleUrl: './app.component.css',
@@ -13,7 +15,8 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent {
   title = 'Angular FE';
   isStatus = true;
-  products: Array<{ id: number; name: string; price: number }> = [
+  selectedProduct: IProduct | undefined;
+  products: IProduct[] = [
     {
       id: 1,
       name: 'Product 1',
@@ -33,5 +36,17 @@ export class AppComponent {
 
   onDelete(id: number) {
     this.products = this.products.filter((product) => product.id !== id);
+  }
+
+  onInfo(product: any) {
+    this.selectedProduct = product;
+  }
+
+  onShowHandle(name: String) {
+    console.log(name);
+  }
+
+  onAdd(product: IProduct) {
+    this.products.push(product);
   }
 }
