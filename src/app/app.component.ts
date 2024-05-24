@@ -1,52 +1,49 @@
-import { IProduct } from './intefaces/iproduct';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ProductAddComponent } from './components/product-add/product-add.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductEditComponent } from './components/product-edit/product-edit.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, ProductDetailComponent],
+  imports: [
+    RouterOutlet,
+    CommonModule,
+    ProductDetailComponent,
+    ProductAddComponent,
+    ProductListComponent,
+    ProductEditComponent,
+  ],
   templateUrl: './app.component.html',
-  // template: `<h1>Hello world!</h1>`,
-  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'Angular FE';
-  isStatus = true;
-  selectedProduct: IProduct | undefined;
-  products: IProduct[] = [
-    {
-      id: 1,
-      name: 'Product 1',
-      price: 10.99,
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      price: 19.99,
-    },
-    {
-      id: 3,
-      name: 'Product 3',
-      price: 7.99,
-    },
-  ];
+  // isSpecial = true;
+  // selectedProduct!: IProduct;
+  // removeItem(id: number) {
+  //   const confirm = window.confirm('Are you sure??');
+  //   if (confirm) {
+  //     this.products = this.products.filter(product => product.id !== id);
+  //   }
+  // }
+  // onHandleAdd(product: any) {
+  //   this.products.push({
+  //     name: product.name,
+  //     price: product.price,
+  //     description: product.description,
+  //     imageUrl: product.image,
+  //   });
+  // }
+  // setItem(product: IProduct) {
+  //   this.selectedProduct = product;
+  // }
+  // onHandleRemove(name: string) {
+  //   console.log(name);
+  // }
+  selectedItemId!: number;
 
-  onDelete(id: number) {
-    this.products = this.products.filter((product) => product.id !== id);
-  }
-
-  onInfo(product: any) {
-    this.selectedProduct = product;
-  }
-
-  onShowHandle(name: String) {
-    console.log(name);
-  }
-
-  onAdd(product: IProduct) {
-    this.products.push(product);
+  handleEditItemId(id: number) {
+    this.selectedItemId = id;
   }
 }

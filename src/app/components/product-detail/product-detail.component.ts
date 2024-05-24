@@ -9,10 +9,5 @@ import { IProduct } from '../../intefaces/iproduct';
   styleUrl: './product-detail.component.css',
 })
 export class ProductDetailComponent {
-  @Input() product!: IProduct;
-  @Output() onName = new EventEmitter<string>();
-
-  onShow(name: string) {
-    this.onName.emit(name);
-  }
+  @Input('product') data!: IProduct;
 }
